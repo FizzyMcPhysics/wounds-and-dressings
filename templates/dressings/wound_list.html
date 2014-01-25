@@ -1,0 +1,11 @@
+{% for wound in object_list %}
+    {% if forloop.first %}
+        <ul>
+    {% endif %}
+            <li>
+                {{ wound }} for patient {{ wound.patient_nhs_number }} at {{ wound.created }} 
+            </li>
+    {% if forloop.last %}
+        </ul>
+    {% endif %}
+{% endfor %}
