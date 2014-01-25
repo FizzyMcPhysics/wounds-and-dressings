@@ -1,0 +1,37 @@
+<h1>{{ object|title }}</h1>
+<p>{{ object.description }}</p>
+
+<ul>
+    <li>{{ object.absorbancy|title }} absorbancy</li>
+    {% if not object.whole_body %}
+        <li>For {{ object.body_area }}</li>
+    {% endif %}
+    <li>{{ object.morphology|title }}</li>
+    {% if object.anti_microbial %}
+        <li>Anti-microbial</li>
+    {% endif %}
+    {% if object.added_agent %}
+        <li>{{ object.added_agent|title }}</li>
+    {% endif %}
+    {% if object.adherence %}
+        <li>Adhesive</li>
+    {% else %}
+        <li>Non-adhesive</li>
+    {% endif %}
+    {% if object.fibrous %}
+        <li>Fibrous</li>
+    {% else %}
+        <li>Non-fibrous</li>
+    {% endif %}
+    {% if object.foam %}
+        <li>Foaming</li>
+    {% endif %}
+    {% if object.hydrating %}
+        <li>Hydrating</li>
+    {% else %}
+        <li>Non-hydrating</li>  
+    {% endif %}
+    {% if object.debriding %}
+        <li>Debriding</li>
+    {% endif %}
+</ul>
