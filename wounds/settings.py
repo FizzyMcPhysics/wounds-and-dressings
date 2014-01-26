@@ -8,16 +8,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 from unipath import Path
 
 PROJECT_DIR = Path(__file__).ancestor(2)
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
 TEMPLATE_DIRS = (
     PROJECT_DIR.child("templates"),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
 )
 
 # Quick-start development settings - unsuitable for production
@@ -46,6 +47,8 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'braces',
+    'south',
+    'crispy_forms'
 )
 
 LOCAL_APPS = (
@@ -75,7 +78,7 @@ WSGI_APPLICATION = 'wounds.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': PROJECT_DIR.child('db.sqlite3'),
     }
 }
 

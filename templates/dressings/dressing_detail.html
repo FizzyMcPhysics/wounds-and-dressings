@@ -1,9 +1,17 @@
-<h1>{{ object|title }}</h1>
-<p>{{ object.description }}</p>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>{{ object|title }}</h1>
+        <p>{{ object.description|linebreaks }}</p>
+
 
 <ul>
     <li>{{ object.absorbancy|title }} absorbancy</li>
-    {% if not object.whole_body %}
+    {% if object.body_area %}
         <li>For {{ object.body_area }}</li>
     {% endif %}
     <li>{{ object.morphology|title }}</li>
@@ -35,3 +43,11 @@
         <li>Debriding</li>
     {% endif %}
 </ul>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/" role="button">Return to list »</a>
+        </p>
+      </div>
+
+    </div>
+
+{% endblock %}

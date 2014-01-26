@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}New Wound{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" role="form" action="" method="post">{% csrf_token %}
+            <h2>Please Enter A Wound</h2>
+                {{ form.as_p }}
+            <button class="btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
