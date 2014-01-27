@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
+from braces.views import LoginRequiredMixin
 from django_filters.views import FilterView
 
 from .filters import DressingFilter
@@ -30,10 +31,10 @@ class DressingDetailView(DetailView):
 
 
 class DressingFilterView(FilterView):
-    filterset_class = DressingFilter 
+    filterset_class = DressingFilter
 
 
-class WoundCreateView(AuthoredMixin, CreateView):
+class WoundCreateView(LoginRequiredMixin, AuthoredMixin, CreateView):
     model = Wound
     form_class = WoundForm
 
@@ -45,6 +46,6 @@ class WoundCreateView(AuthoredMixin, CreateView):
             diabetes=self.object.diabetic_patient,
             infected=1 if self.object.wound_type.short_name==WOUND_TYPE.infected else 0,
             type=self.object.wound_type.id,
-            deep=0 if self.object.wound_depth==WOUND_DEPTH.shallow else 1, 
+            deep=0 if self.object.wound_depth==WOUND_DEPTH.shallow else 1,
             debriding=1 if self.object.wound_type.short_name==WOUND_TYPE.black else 0,
         )
