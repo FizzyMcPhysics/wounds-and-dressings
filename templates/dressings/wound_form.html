@@ -5,11 +5,20 @@
 {% block title %}New Wound{% endblock %}
 
 {% block content %}
+<link href="{{ STATIC_URL }}css/signin.css" rel="stylesheet">
+
+<div class="container">
+
     <div class="container">
         <form class="form-signin" role="form" action="" method="post">{% csrf_token %}
-            <h2>Please Enter A Wound</h2>
-                {{ form.as_p }}
-            <button class="btn-primary" type="submit">Submit</button>
+            <h2 class="form-signin-heading">Please Enter Wound</h2>
+                {% for field in form %}
+                {{ field.label }}
+                {{ field }}
+                {{ field.errors }}
+                {% endfor %}
+                <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         </form>
     </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from django.conf import settings
 from . import views 
 
 urlpatterns = patterns('',
@@ -29,3 +29,23 @@ urlpatterns = patterns('',
         name="dressing_detail",
     ),
 )
+
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += patterns('',
+        (
+            r'^static/(?P<path>.*)$',
+             'django.views.static.serve',
+            {
+                'document_root': settings.STATIC_ROOT
+            }
+        ),
+        (
+            r'^media/(?P<path>.*)$',
+             'django.views.static.serve',
+            {
+                'document_root': settings.MEDIA_ROOT
+            }
+        ),
+    )

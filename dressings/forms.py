@@ -7,13 +7,16 @@ class WoundForm(forms.ModelForm):
         model = models.Wound 
         fields = (
             "patient_nhs_number",
-            "diabetic_patient",            
             "heritage",
             "body_area",
             "wound_type",
             "wound_depth",
             "exudate_level",
             "wound_age",
-            "wound_classification",
+            "wound_classification",            
         )
-        
+
+    def __init__(self, *args, **kwargs):
+        super(WoundForm, self).__init__(*args, **kwargs)
+        for _, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

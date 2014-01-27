@@ -17,9 +17,15 @@ TEMPLATE_DIRS = (
     PROJECT_DIR.child("templates"),
 )
 
+STATICFILES_DIRS = (
+    PROJECT_DIR.child("static"),
+)
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',   
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
 )
 
 # Quick-start development settings - unsuitable for production
