@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
+from braces.views import LoginRequiredMixin
 from django_filters.views import FilterView
 
 from .filters import DressingFilter
@@ -33,7 +34,7 @@ class DressingFilterView(FilterView):
     filterset_class = DressingFilter 
 
 
-class WoundCreateView(AuthoredMixin, CreateView):
+class WoundCreateView(LoginRequiredMixin, AuthoredMixin, CreateView):
     model = Wound
     form_class = WoundForm
 

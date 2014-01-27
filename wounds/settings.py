@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 from unipath import Path
+from django.core.urlresolvers import reverse_lazy
 
 PROJECT_DIR = Path(__file__).ancestor(2)
 
@@ -34,6 +35,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('dressing_filter')
+LOGOUT_URL = reverse_lazy('logout')
 
 # Application definition
 DEFAULT_APPS = (

@@ -3,10 +3,18 @@
 {% block content %}
 <div class="container">
       <div class="header">
-        
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+          <li><a href="#">Contact</a></li>
+        </ul>
         <h3 class="text-muted">Wound Dressing Selector</h3>
       </div>
-
+      <br>
       <div class="jumbotron">
         <h1>Suggested Dressings</h1>
         {% if request.GET.wound %}
